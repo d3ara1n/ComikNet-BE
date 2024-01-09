@@ -1,11 +1,12 @@
 use std::net::SocketAddr;
 
-use comiknet_be::{app, setting::SETTINGS, util::graceful_shutdown::shutdown_signal};
+use comiknet_be::{app, logger, setting::SETTINGS, util::graceful_shutdown::shutdown_signal};
 use tokio::net::TcpListener;
 use tracing::info;
 
 #[tokio::main]
 async fn main() {
+    logger::setup();
     let app = app::create_app().await;
 
     let port = SETTINGS.server.port;
