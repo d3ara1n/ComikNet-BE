@@ -1,0 +1,54 @@
+[package]
+name = "comiknet-be"
+version = "0.1.0"
+edition = "2021"
+homepage = "https://github.com/ComikNet/ComikNet-BE"
+repository = "https://github.com/ComikNet/ComikNet-BE"
+description = "ComikNet backend"
+license = "Apache-2.0"
+
+
+[dependencies]
+# async runtime
+tokio = { version = "1.35.1", features = ["full"] }
+
+# futures for async
+futures = "0.3.30"
+futures-util = "0.3.30"
+
+# single assignment cells and lazy statics
+once_cell = "1.19.0"
+
+# serialization and deserialization
+serde = { version = "1.0.195", features = ["derive"] }
+serde_json = "1.0.111"
+
+# error handling
+anyhow = "1.0.76"
+thiserror = "1.0.52"
+
+# tracing aka logging
+tracing = "0.1.40"
+tracing-subscriber = { version = "0.3.18", features = ["chrono"] }
+tracing-appender = "0.2.3"
+
+# web framework
+axum = { version = "0.7.1", features = ["tracing", "ws"] }
+axum-extra = { version = "0.9.0", features = ["cookie", "typed-header"] }
+hyper = { version = "1.0.1", features = ["full"] }
+tower = { version = "0.4.13", features = ["full"] }
+tower-http = { version = "0.5.0", features = ["full"] }
+
+# openapi for api docs
+utoipa = { version = "4.1.0", features = ["axum_extras", "openapi_extensions"] }
+utoipa-redoc = { version = "2.0.0", features = ["axum"] }
+
+# http client
+reqwest = "0.11.23"
+
+# orm
+sea-orm = { version = "0.12.10", features = [
+    "sqlx-postgres",
+    "runtime-tokio-native-tls",
+    "macros",
+] }
