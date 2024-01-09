@@ -1,0 +1,16 @@
+{
+  "environment": "development",
+  "server": {
+    "port": 8080
+  },
+  "database": {
+    "uri": "postgresql://localhost:27017",
+    "name": "rustapi"
+  },
+  "auth": {
+    "secret": "secret"
+  },
+  "logger": {
+    "level": "debug"
+  }
+}

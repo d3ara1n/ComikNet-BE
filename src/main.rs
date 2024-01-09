@@ -1,20 +1,22 @@
-use axum::Router;
-use comiknet_be::{api, util::graceful_shutdown::shutdown_signal};
+use std::net::SocketAddr;
+
+use comiknet_be::{app, setting::SETTINGS, util::graceful_shutdown::shutdown_signal};
 use tokio::net::TcpListener;
-use tower_http::trace::TraceLayer;
+use tracing::info;
 
 #[tokio::main]
 async fn main() {
-    tracing_subscriber::fmt::init();
+    let app = app::create_app().await;
 
-    let app = Router::new()
-        .merge(api::mount())
-        .layer(TraceLayer::new_for_http());
+    let port = SETTINGS.server.port;
+    let address = SocketAddr::from(([127, 0, 0, 1], port));
+    info!("Server listening on {}", &address);
 
-    let listener = TcpListener::bind("0.0.0.0:11451").await.unwrap();
+    let listener = TcpListener::bind(address).await.unwrap();
 
-    axum::serve(listener, app)
+    axum::serve(listener, app.into_make_service())
         .with_graceful_shutdown(shutdown_signal())
         .await
         .unwrap();
 }
+
