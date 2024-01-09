@@ -1,5 +1,5 @@
 [package]
-name = "comiknet-be"
+name = "comiknet_be"
 version = "0.1.0"
 edition = "2021"
 homepage = "https://github.com/ComikNet/ComikNet-BE"
@@ -32,7 +32,6 @@ thiserror = "1.0.52"
 tracing = "0.1.40"
 tracing-subscriber = { version = "0.3.18", features = ["chrono"] }
 tracing-appender = "0.2.3"
-env_logger = "0.10.1"
 config = "0.13.4"
 
 # web framework
