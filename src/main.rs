@@ -1,6 +1,5 @@
-use std::net::SocketAddr;
-
 use comiknet_be::{app, logger, setting::SETTINGS, util::graceful_shutdown::shutdown_signal};
+use std::net::SocketAddr;
 use tokio::net::TcpListener;
 use tracing::info;
 
@@ -20,4 +19,3 @@ async fn main() {
         .await
         .unwrap();
 }
-

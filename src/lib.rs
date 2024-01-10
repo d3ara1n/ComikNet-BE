@@ -6,3 +6,4 @@ pub mod perlude;
 pub mod routes;
 pub mod setting;
 pub mod util;
+pub mod database;
