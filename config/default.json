@@ -4,8 +4,8 @@
     "port": 8080
   },
   "database": {
-    "uri": "postgresql://localhost:27017",
-    "name": "rustapi"
+    "uri": "postgresql://comiknet:comiknet@localhost:5432",
+    "name": "comiknet"
   },
   "auth": {
     "secret": "secret"

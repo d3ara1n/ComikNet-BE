@@ -1,4 +1,6 @@
-use axum::Router;
+use std::sync::Arc;
+
+use axum::{Extension, Router};
 use hyper::header;
 use tower_http::{
     compression::CompressionLayer, cors::CorsLayer, propagate_header::PropagateHeaderLayer,
@@ -6,13 +8,16 @@ use tower_http::{
 };
 use tracing::debug;
 
-use crate::routes;
+use crate::{context::Context, database::setup_db_connection, routes};
 
 pub async fn create_app() -> Router {
     debug!("Starting app");
     Router::new()
         .merge(routes::status::create_route())
         .merge(routes::apis::mount())
+        .layer(Extension(Arc::new(Context {
+            db: setup_db_connection().await,
+        })))
         .layer(
             trace::TraceLayer::new_for_http()
                 .make_span_with(trace::DefaultMakeSpan::new().include_headers(true))
