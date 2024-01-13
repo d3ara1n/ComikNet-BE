@@ -1,4 +1,4 @@
-name: sonarcloud_pr_test
+name: sonarcloud-test
 
 on:
   pull_request:
@@ -37,5 +37,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
+            -Dsonar.organization=comiknet
+            -Dsonar.projectKey=comiknet-be
             -Dsonar.externalIssuesReportPaths=sonar-issues.json
             -Dcommunity.rust.lcov.reportPaths=lcov.info
