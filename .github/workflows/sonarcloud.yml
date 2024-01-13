@@ -38,6 +38,6 @@ jobs:
         with:
           args: >
             -Dsonar.organization=comiknet
-            -Dsonar.projectKey=comiknet-be
+            -Dsonar.projectKey=ComikNet_ComikNet-BE
             -Dsonar.externalIssuesReportPaths=sonar-issues.json
             -Dcommunity.rust.lcov.reportPaths=lcov.info
